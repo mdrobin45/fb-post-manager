@@ -32,11 +32,5 @@ npm start
 ```
 This will launch the application, and you can begin managing your Facebook posts.
 
-## Contributing
-We welcome contributions! Please read our [Contributing Guidelines](CONTRIBUTING.md) for more details.
-
-## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
-
 ## Contact
-For any questions or feedback, please contact us at support@facebookpostmanager.com.
+For any questions or feedback, please contact us at dev@robinrana.com

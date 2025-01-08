@@ -3,8 +3,12 @@ import { PostsList } from "@/components/PostsList";
 import { SchedulePost } from "@/components/SchedulePost";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { facebookAuthProvider } from "@/lib/authProvider";
 import axiosClient from "@/lib/axiosClient";
+import auth from "@/lib/firebase.config";
+import { signInWithPopup } from "firebase/auth";
 import { useEffect, useState } from "react";
+import { FaFacebook } from "react-icons/fa";
 
 export default function Index() {
    const [published, setPublished] = useState([]);
@@ -21,14 +25,24 @@ export default function Index() {
          .catch((err) => console.log(err));
    }, []);
 
+   // Handle login with facebook
+   const loginWithFB = () => {
+      signInWithPopup(auth, facebookAuthProvider).then((res) => {
+         const { user } = res;
+         console.log(user);
+      });
+   };
+
    return (
       <div className="container mx-auto py-8 px-4">
          <div className="flex items-center justify-between">
             <h1 className="text-3xl font-bold text-facebook-primary mb-8">
                Facebook Post Manager
             </h1>
-            <Button className="bg-facebook-primary hover:bg-facebook-hover">
-               LOGIN
+            <Button
+               onClick={loginWithFB}
+               className="bg-facebook-primary hover:bg-facebook-hover">
+               <FaFacebook /> Login with Facebook
             </Button>
          </div>
 

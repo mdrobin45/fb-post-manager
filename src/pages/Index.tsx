@@ -6,7 +6,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { facebookAuthProvider } from "@/lib/authProvider";
 import axiosClient from "@/lib/axiosClient";
 import auth from "@/lib/firebase.config";
-import { signInWithPopup } from "firebase/auth";
+import axios from "axios";
+import { FacebookAuthProvider, signInWithPopup } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { FaFacebook } from "react-icons/fa";
 
@@ -25,11 +26,32 @@ export default function Index() {
          .catch((err) => console.log(err));
    }, []);
 
+   // Get user id
+   const getUserId = (userId:string) => {
+      
+   }
+   // Get page access token & user id
+   const getPageToken = (userAccessToken: string) => {
+      // Get the user id
+      axios
+         .get(
+            `${
+               import.meta.env.VITE_GRAPH_API
+            }/me?access_token=${userAccessToken}`
+         )
+         .then((res) => {
+            console.log(res)
+         })
+         .then((err) => console.log(err));
+   };
+
    // Handle login with facebook
    const loginWithFB = () => {
       signInWithPopup(auth, facebookAuthProvider).then((res) => {
-         const { user } = res;
-         console.log(user);
+         const credentials = FacebookAuthProvider.credentialFromResult(res);
+         const user_access_token = credentials.accessToken;
+         console.log("User Token: ",user_access_token);
+         getPageToken(user_access_token);
       });
    };
 

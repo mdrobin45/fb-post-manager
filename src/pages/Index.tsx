@@ -1,6 +1,7 @@
 import { InstantPost } from "@/components/InstantPost";
 import { PostsList } from "@/components/PostsList";
 import { SchedulePost } from "@/components/SchedulePost";
+import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import axiosClient from "@/lib/axiosClient";
 import { useEffect, useState } from "react";
@@ -22,9 +23,14 @@ export default function Index() {
 
    return (
       <div className="container mx-auto py-8 px-4">
-         <h1 className="text-3xl font-bold text-facebook-primary mb-8">
-            Facebook Post Manager
-         </h1>
+         <div className="flex items-center justify-between">
+            <h1 className="text-3xl font-bold text-facebook-primary mb-8">
+               Facebook Post Manager
+            </h1>
+            <Button className="bg-facebook-primary hover:bg-facebook-hover">
+               LOGIN
+            </Button>
+         </div>
 
          <Tabs defaultValue="instant" className="w-full">
             {/* Tabs */}
@@ -41,7 +47,7 @@ export default function Index() {
 
             {/* Create schedule post */}
             <TabsContent value="schedule" className="space-y-8">
-               <SchedulePost/>
+               <SchedulePost />
             </TabsContent>
 
             {/* Published posts */}

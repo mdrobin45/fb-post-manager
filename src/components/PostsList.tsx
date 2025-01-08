@@ -32,7 +32,7 @@ export function PostsList({ posts, is_published }) {
                   posts.map((post) => (
                      <TableRow key={post.id}>
                         <TableCell className="font-medium">
-                           {post.message}
+                           {post.message.split(" ",10)}
                         </TableCell>
                         <TableCell>
                            {new Date(post?.created_time).toLocaleString(
